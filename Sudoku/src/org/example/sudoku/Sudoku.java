@@ -32,7 +32,6 @@ public class Sudoku extends Activity implements OnClickListener {
 		exitButton.setOnClickListener(this);
 	}
 
-	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -43,6 +42,9 @@ public class Sudoku extends Activity implements OnClickListener {
 		case R.id.new_button:
 			openNewGameDialog();
 			break;
+		case R.id.exit_button:
+			finish();
+			break;
 		// More buttons go here (if any) ...
 		}
 
@@ -52,6 +54,9 @@ public class Sudoku extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		Log.d(TAG, "Clicked on " + which);
 		// Start Game here ...
+		Intent intent = new Intent(Sudoku.this, Game.class);
+		intent.putExtra(Game.KEY_DIFFICULTY, which);
+		startActivity(intent);
 	}
 
 	private void openNewGameDialog() {
@@ -61,7 +66,6 @@ public class Sudoku extends Activity implements OnClickListener {
 				.setItems(R.array.difficulty,
 						new DialogInterface.OnClickListener() {
 
-							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
 								// TODO Auto-generated method stub
